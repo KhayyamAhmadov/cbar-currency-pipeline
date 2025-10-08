@@ -116,7 +116,7 @@ By containerizing the entire system, this project achieves **full automation, st
 ## 🧑‍💻 How to Run Locally
 1. Clone this repository  
    ```bash
-   git clone https://github.com/yourusername/cbar-currency-pipeline.git
+   git clone https://github.com/KhayyamAhmadov/cbar-currency-pipeline.git
    cd cbar-currency-pipeline
 
 2. Start the system
@@ -125,7 +125,7 @@ By containerizing the entire system, this project achieves **full automation, st
 
 4. Open Airflow UI
    ```bash
-   Open Airflow UI → http://localhost:8080
+   http://localhost:8080
 
 5.  Connect Power BI
     - Open Power BI Desktop
