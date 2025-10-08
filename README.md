@@ -34,6 +34,7 @@
 
 - Local PostgreSQL: Stores all scraped currency data persistently.
 
+**Database:** `currency`
 **Table:** `exchange_rates`
 
 | Column | Type | Description |
