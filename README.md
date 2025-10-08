@@ -1,6 +1,6 @@
 # 💱 Currency Data Pipeline (CBAR.az Scraper & Power BI Dashboard)
 
-![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Airflow](https://img.shields.io/badge/Airflow-Automation-orange)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
 ![Docker](https://img.shields.io/badge/Docker-Containerization-lightblue)
@@ -23,13 +23,15 @@ The system collects currency data starting from **1993** and keeps updating dail
 | **Data Source** | [CBAR.az](https://www.cbar.az) |
 | **Scraping** | `Python`, `Requests`, `BeautifulSoup` |
 | **Workflow Orchestration** | `Apache Airflow` |
-| **Database** | `PostgreSQL` |
+| **Database** | `PostgreSQL` (local) |
 | **Visualization** | `Power BI` |
 | **Containerization** | `Docker`, `docker-compose` |
 
 ---
 
 ## 🗂️ Database Schema
+
+- Local PostgreSQL: Stores all scraped currency data persistently.
 
 **Table:** `exchange_rates`
 
@@ -41,7 +43,7 @@ The system collects currency data starting from **1993** and keeps updating dail
 | `code` | `varchar(5)` | Currency code (e.g., USD, EUR, GBP) |
 | `rate` | `numeric(12,4)` | Exchange rate value |
 
-**Example SQL:**
+**Create SQL table:**
 ```sql
 CREATE TABLE exchange_rates (
   id SERIAL PRIMARY KEY,
@@ -89,28 +91,25 @@ Overall, Airflow ensures that **the entire ETL process runs smoothly and reliabl
 
 The whole project runs inside **Docker containers**, making it easy to deploy, run, and manage — without needing to install anything manually.
 
-### 🧩 Components Inside Docker
-- **PostgreSQL Container:**  
-  Hosts the `currency` database where all scraped exchange rates are stored.  
-  The data is persistent thanks to Docker volumes, so it is not lost after restarting containers.
-  
+### 🧩 Components Inside Docker  
 - **Airflow Container:**  
   Runs all automation workflows — the scraping process, database updates, and scheduling.  
   It communicates directly with PostgreSQL inside the Docker network.
 
 ### ⚙️ How It Works Together
-1. When Docker starts, it launches both **PostgreSQL** and **Airflow** containers.  
+1. 1. Start the Airflow container via Docker (PostgreSQL runs locally).  
 2. Airflow automatically loads the DAG that performs daily scraping from CBAR.az.  
 3. The scraped data is saved to the PostgreSQL container.  
 4. Power BI then connects to the same database to visualize the data.
 
 ### 💡 Benefits
-- No local setup or dependency issues  
+- Airflow runs in Docker while PostgreSQL remains local  
+- No local installation needed for Airflow  
 - Easy to start with a single command (`docker-compose up -d`)  
-- Portable — can run on any system with Docker installed  
-- Clean and isolated environment for all components  
+- Database stays persistent on the local machine  
+- Portable and reproducible Airflow environment
 
-By containerizing the entire system, this project achieves **full automation, stability, and reproducibility** — ideal for production or cloud deployment.
+By containerizing the entire system, this project achieves **full automation, stability, and reproducibility** — ideal for production
 
 ---
 
@@ -128,5 +127,12 @@ By containerizing the entire system, this project achieves **full automation, st
    ```bash
    Open Airflow UI → http://localhost:8080
 
-5. Connect Power BI to PostgreSQL → Database: currency
-
+5.  Connect Power BI
+    - Open Power BI Desktop
+    - Select PostgreSQL as data source
+    - Enter your local database credentials:
+    ```bash
+    Server: localhost
+    Database: currency
+    User: postgres
+    Password: 1234
