@@ -98,7 +98,7 @@ The whole project runs inside **Docker containers**, making it easy to deploy, r
   It communicates directly with PostgreSQL inside the Docker network.
 
 ### ⚙️ How It Works Together
-1. 1. Start the Airflow container via Docker (PostgreSQL runs locally).  
+1. Start the Airflow container via Docker (PostgreSQL runs locally).  
 2. Airflow automatically loads the DAG that performs daily scraping from CBAR.az.  
 3. The scraped data is saved to the PostgreSQL container.  
 4. Power BI then connects to the same database to visualize the data.
