@@ -9,10 +9,11 @@
 ---
 
 ## 📘 Project Overview
-This project automates the collection, storage, and visualization of daily currency exchange rates from the Central Bank of Azerbaijan ([CBAR.az](https://www.cbar.az/)) for **learning and educational purposes only**.  
-It demonstrates a complete **data engineering pipeline** — from **web scraping** to **database management**, **workflow automation**, and **business intelligence visualization**.
+- This project automates the collection, storage, and visualization of daily currency exchange rates from the Central Bank of Azerbaijan ([CBAR.az](https://www.cbar.az/)) for **learning and educational purposes only**.  
 
-The system collects currency data starting from **1993** and keeps updating daily through an **Apache Airflow** pipeline running inside **Docker**.
+- It demonstrates a complete **data engineering pipeline** — from **web scraping** to **database management**, **workflow automation**, and **business intelligence visualization**.
+
+- The system collects currency data starting from **1993** and keeps updating daily through an **Apache Airflow** pipeline running inside **Docker**.
 
 ---
 
