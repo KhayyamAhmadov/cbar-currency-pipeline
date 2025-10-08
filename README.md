@@ -50,7 +50,7 @@ CREATE TABLE exchange_rates (
   date DATE,
   name VARCHAR(50),
   code VARCHAR(5),
-  rate NUMERIC(12,5)
+  rate NUMERIC(12,4)
 );
 ```
 
