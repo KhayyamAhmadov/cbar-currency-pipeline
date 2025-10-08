@@ -39,7 +39,7 @@ The system collects currency data starting from **1993** and keeps updating dail
 | `date` | `date` | Exchange rate date |
 | `name` | `varchar(50)` | Currency name (AZN-based) |
 | `code` | `varchar(5)` | Currency code (e.g., USD, EUR, GBP) |
-| `rate` | `numeric(12,5)` | Exchange rate value |
+| `rate` | `numeric(12,4)` | Exchange rate value |
 
 **Example SQL:**
 ```sql
