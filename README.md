@@ -135,5 +135,5 @@ By containerizing the entire system, this project achieves **full automation, st
     ```bash
     Server: localhost
     Database: currency
-    User: postgres
-    Password: 1234
+    User: 
+    Password: 
