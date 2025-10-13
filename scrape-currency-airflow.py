@@ -6,9 +6,6 @@ from bs4 import BeautifulSoup
 import psycopg2
 import time
 
-# =========================
-# PostgreSQL bağlantısı
-# =========================
 def get_conn():
     return psycopg2.connect(
         dbname='currency',
@@ -18,9 +15,6 @@ def get_conn():
         port='5432'
     )
 
-# =========================
-# Valyuta məlumatlarını çəkən funksiya
-# =========================
 def scrape_currency(date_to_scrape):
     conn = get_conn()
     cur = conn.cursor()
@@ -52,7 +46,6 @@ def scrape_currency(date_to_scrape):
             except ValueError:
                 continue
 
-            # ❗ BAZA ÜÇÜN HƏR ZAMAN date_to_scrape
             cur.execute("""
                 INSERT INTO exchange_rates (date, code, name, rate)
                 VALUES (%s, %s, %s, %s)
@@ -64,9 +57,6 @@ def scrape_currency(date_to_scrape):
     conn.close()
     print(f"✅ {date_to_scrape.date()} məlumatları uğurla yazıldı.")
 
-# =========================
-# Keçmiş dataları toplamaq
-# =========================
 def scrape_historical_data():
     start_date = datetime(1993, 11, 25)
     end_date = datetime.today()
@@ -84,16 +74,10 @@ def scrape_historical_data():
 
     print("✅ Keçmiş məlumatların yığılması tamamlandı!")
 
-# =========================
-# Gündəlik yenilənmə funksiyası
-# =========================
 def scrape_today(**kwargs):
     date_to_scrape = datetime.strptime(kwargs['ds'], "%Y-%m-%d")
     scrape_currency(date_to_scrape)
 
-# =========================
-# Airflow DAG tərifi
-# =========================
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -123,3 +107,4 @@ with DAG(
     )
 
     task_scrape_history >> task_scrape_today
+
