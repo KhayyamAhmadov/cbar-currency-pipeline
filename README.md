@@ -1,4 +1,5 @@
-# 💱 Currency Data Pipeline (CBAR.az Scraper & Power BI Dashboard)
+# 💱 Currency Data Pipeline 
+  (CBAR.az Scraper & Power BI Dashboard)
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Airflow](https://img.shields.io/badge/Airflow-Automation-orange)
